@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const serverless = require("serverless-http");
+
 const app = express();
 const databseURI =
   "mongodb+srv://younes38:aa123123@nodeninja.qaalr.mongodb.net/gameStore?retryWrites=true&w=majority";
@@ -11,19 +13,17 @@ mongoose
     app.listen();
   });
 
-const bodyParser = require('body-parser');
+// import Routes
+const clientsRoutes = require("../routes/client");
+const itemsRoutes = require("../routes/item");
+
+const bodyParser = require("body-parser");
 // middlewares
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-// Routes
-app.get("/", async (req, res) => {
-  console.log("here");
-  res.json({name: "younes"})
-});
+app.use("./netlify/functions/api", clientsRoutes);
+app.use("./netlify/functions/api", itemsRoutes);
 
-// import Routes
-const clientsRoutes = require('./routes/client')
-const itemsRoutes = require('./routes/item')
-app.use(clientsRoutes);
-app.use(itemsRoutes);
+module.exports = app;
+module.exports.handler = serverless(app);

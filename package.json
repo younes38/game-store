@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
+    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
   },
   "author": "",
   "license": "ISC",
@@ -12,7 +13,8 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.13",
-    "shortid": "^2.2.16"
+    "netlify-lambda": "^2.0.11",
+    "serverless-http": "^2.7.0"
   },
   "engines": {
     "node": "12.19.0"
