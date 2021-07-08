@@ -24,6 +24,9 @@ app.use(bodyParser.json());
 
 app.use("/.netlify/functions/api", clientsRoutes);
 app.use("/.netlify/functions/api", itemsRoutes);
+app.use("/", (res) => {
+  res.json({ message: "route not found" });
+});
 
 module.exports = app;
 module.exports.handler = serverless(app);
