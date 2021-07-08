@@ -22,8 +22,8 @@ const bodyParser = require("body-parser");
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("./netlify/functions/api", clientsRoutes);
-app.use("./netlify/functions/api", itemsRoutes);
+app.use("/.netlify/functions/api", clientsRoutes);
+app.use("/.netlify/functions/api", itemsRoutes);
 
 module.exports = app;
 module.exports.handler = serverless(app);
