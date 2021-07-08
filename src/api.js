@@ -18,6 +18,9 @@ const clientsRoutes = require("../routes/client");
 const itemsRoutes = require("../routes/item");
 
 const bodyParser = require("body-parser");
+const cors = require("cors");
+app.use(cors());
+
 // middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
